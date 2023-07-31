@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+
 @font-face{
     font-family: "vazir";
     src: url("/my-app/ttf//Vazirmatn-Medium.ttf") format(truetype);
@@ -12,3 +13,6 @@
 body{
     font-family: "vazir",sans-serif;
 }
+
+@import 'aos/dist/aos.css'
+
