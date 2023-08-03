@@ -5,14 +5,17 @@
 
 
 @font-face{
-    font-family: "vazir";
-    src: url("/my-app/ttf//Vazirmatn-Medium.ttf") format(truetype);
+    font-family: "Vazirmatn";
+    src: url("/fonts/Vazirmatn-Bold.ttf") format(truetype);
 }
 
 
-body{
-    font-family: "vazir",sans-serif;
-}
+/* body{
+    font-family: "Vazirmatn",sans-serif;
+} */
 
-@import 'aos/dist/aos.css'
+
+{
+    font-family: "Vazirmatn",sans-serif;
+} 
 

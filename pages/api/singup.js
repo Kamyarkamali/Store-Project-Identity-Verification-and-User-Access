@@ -1,37 +1,35 @@
-import connectDB from "@/utils/coonection";
-import User from "@/models/User";
-import { hashPassword } from "@/utils/hashdPassword";
+import User from "@/models/User"
+import { hashPassword } from "@/utils/hashdPassword"
+import connectDB from "@/utils/coonection"
 
-export default async function handelr(req,res){
-
+export default async function handler(req,res){
     if(req.method!=="POST"){
         return
     }
 
     try{
-        await connectDB()
-        return res.status(201).json({status:"succses",message:"conection to dataBase"})
+       await connectDB()
     }catch(err){
-        console.log("problem to connection")
+        return res.status(500).json({status:"failed",message:"Error to connection db"})
     }
 
-    const {email,password}=req.body
+    const {email,password,conformPassword}=req.body
 
-    if(!email || password){
-        return res.status(422).json({status:"failed"})
+    if(!email || !password || !conformPassword){
+        return res.status(422).json({status:"failde",message:"invalid data"})
     }
 
-    const exsitings=await User.findOne({email:email})
+    const exsitingUser=await User.findOne({email:email})
 
-    if(exsitings){
-        return res.status(401).json({status:"failed",message:"User allredy acount"})
+    if(exsitingUser){
+        return res.status(422).json({status:"failed",message:"user exsits alredy"})
     }
 
-    const hasheddPasword=await hashPassword(password)
+    const hashedPassword=await hashPassword(password)
 
-    const newUser=await User.create({email:email,password:hasheddPasword})
+    const newUser=await User.create({email:email,password:hashedPassword,confirmpassword:hashedPassword})
 
     console.log(newUser)
 
-    res.status(201).json({status:"succses",message:"User created"})
+    res.status(201).json({status:"success",message:"user created"})
 }

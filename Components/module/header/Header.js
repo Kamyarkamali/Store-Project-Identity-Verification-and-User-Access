@@ -13,6 +13,11 @@ import { AiOutlinePhone } from 'react-icons/ai';
 import { AiFillGithub } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
 import TopHandeler from '@/Components/element/TopHandeler';
+import { signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
+
+import { useRouter } from 'next/router';
+
 
 function Header() {
     
@@ -24,12 +29,18 @@ function Header() {
 
     const [hamburgerMenu,setHamburgerMenu]=useState(false);
 
+    const {data,status}=useSession()
+
     const iconVariants={
       hover:{
         x:15,
         y:15,
         scale:1
       },
+    }
+
+    const singoutHandeler=()=>{
+      signOut()
     }
 
     
@@ -48,11 +59,21 @@ function Header() {
 
         <AiOutlineUser size={30} color='black' className='bg-yellow-500 rounded-md relative cursor-pointer'/>
         {isHoveringUser&&<motion.div variants={iconVariants} initial="initial"whileHover="hover" className='absolute flex flex-col z-20 items-center top-[50px] left-[50px] bg-white p-3 text-gray-400 font-bold rounded-lg shadow-md shadow-black'>
+          <Link href={"/"} className='mb-4'>
         <span className='mb-4 text-sm  hover:bg-yellow-400 p-1 rounded-md hover:text-orange-500 duration-300 cursor-pointer'>صفحه اصلی</span>
+          </Link>
         <span className='mb-4 text-sm hover:bg-yellow-400 p-1 rounded-md hover:text-orange-500 duration-300 cursor-pointer'>پنل کاربری</span>
         <span className='mb-4 text-sm hover:bg-yellow-400 p-1 rounded-md hover:text-orange-500 duration-300 cursor-pointer'>سبد خرید من</span>
         <span className='mb-4 text-sm hover:bg-yellow-400 p-1 rounded-md hover:text-orange-500 duration-300 cursor-pointer'>لیست علاقه مندی ها</span>
-        <button className='mb-4 text-sm hover:bg-yellow-400 p-1 rounded-md hover:text-orange-500 duration-300 cursor-pointer'>ورود / خروج</button>
+        {status ==="authenticated" ? (
+          <Link href={"/singin"}>
+            <button onClick={singoutHandeler}>خروج</button>
+          </Link>
+        ) : (
+          <Link href={'/singup'}>
+          <button className='mb-4 text-sm hover:bg-yellow-400 p-1 rounded-md hover:text-orange-500 duration-300 cursor-pointer'>ورود / خروج</button>
+          </Link>
+        )}
         </motion.div>}
 
       </div>

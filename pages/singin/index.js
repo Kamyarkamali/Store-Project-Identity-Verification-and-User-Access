@@ -1,4 +1,4 @@
-import SinIn from '@/Components/SingIn/SinIn'
+import SinIn from '@/Components/SingIn/singin'
 import React from 'react'
 
 function index() {

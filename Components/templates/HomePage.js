@@ -5,6 +5,8 @@ import Hero from '../module/Hero/Hero';
 import Slider3 from "../module/Slider3/Slider3";
 import Options from '../Options/Options';
 import ProductNew from '../ProductNew/ProductNew';
+import ShopProdutcsPage from '../ShopProdutcsPage/ShopProdutcsPage';
+import Hero2 from '../hero2/Hero2';
 
 
 function HomePage() {
@@ -21,6 +23,8 @@ function HomePage() {
           <h2 className='text-center mt-[6rem] text-xl md:text-5xl'>دسته بندی فروشگاه ها</h2>
         <ProductNew/>
         </div>
+        <ShopProdutcsPage/>
+        <Hero2/>
     </div>
   )
 }

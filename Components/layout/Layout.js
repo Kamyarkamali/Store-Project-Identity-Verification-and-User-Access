@@ -10,7 +10,7 @@ function Layout({children}) {
         </header>
 
 
-        <div className='min-h-[800px]'>{children}</div>
+        <div className='h-fit'>{children}</div>
 
     <footer>
         <Footer/>
