@@ -8,6 +8,12 @@ import { BsFillHeartFill } from 'react-icons/bs'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import Link from 'next/link'
 
+
+//Redux
+import { useSelector,useDispatch } from 'react-redux'
+
+import { addToCart ,decrement} from '@/Redux/fetchare/createSlice'
+
 function ShopProdutcsPage() {
 
     const [menu,setMenu]=useState(null)
@@ -15,6 +21,18 @@ function ShopProdutcsPage() {
     const handleHover = (hoverStatus) => {
         setMenu(hoverStatus);
       };
+
+      const dispatch=useDispatch()
+
+      const state=useSelector((state)=>state.items.products)
+      console.log(state)
+
+      const handelAddToCart=(product)=>{
+        dispatch(addToCart(product))
+        localStorage.setItem("cartProducts",JSON.stringify(product))
+      }
+
+    
 
   return (
     <div className='max-w-[1400px] flex-wrap mx-auto gap-5 flex justify-center items-center mt-9 '>
@@ -32,7 +50,7 @@ function ShopProdutcsPage() {
             <AiOutlineInfoCircle size={20} color='gray'/>
 
             <div className='flex justify-center left-[60px] py-5 absolute top-[240px]'> 
-                    <button className='bg-blue-700 mt-3 h-[30px] w-[200px] text-white rounded-lg font-bold'>افزودن به سبد خرید</button>
+                    <button onClick={()=>handelAddToCart(item)} className='bg-blue-700 mt-3 h-[30px] w-[200px] text-white rounded-lg font-bold'>افزودن به سبد خرید</button>
                 </div>
             </div>}
                  {/* {name} */}

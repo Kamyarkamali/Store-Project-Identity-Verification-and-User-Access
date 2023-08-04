@@ -6,16 +6,16 @@
 
 @font-face{
     font-family: "Vazirmatn";
-    src: url("/fonts/Vazirmatn-Bold.ttf") format(truetype);
+    src: url("../public//fonts/ttf//Vazirmatn-Regular.ttf") format(truetype);
 }
 
 
-/* body{
+body{
     font-family: "Vazirmatn",sans-serif;
-} */
+}
 
-
+/* 
 {
     font-family: "Vazirmatn",sans-serif;
-} 
+}  */
 

@@ -15,11 +15,16 @@ import { AiOutlineClose } from 'react-icons/ai';
 import TopHandeler from '@/Components/element/TopHandeler';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
-import { useRouter } from 'next/router';
 
 
 function Header() {
+
+  const state=useSelector((state)=>state.items.products)
+  
+
     
     const [isHovering, setIsHovering] = useState(false);
 
@@ -43,13 +48,16 @@ function Header() {
       signOut()
     }
 
+
     
   return (
     <div className='bg-[#240E8B] min-h-[150px] max-w-[1400px] mx-auto'>
     <div className='flex items-center justify-between py-4'>
     <div className='flex gap-8 ml-4 p-1'>
+        <Link href={"/shopAllItems"}>
         <BsBag size={30} color='white' className='relative'/>
-        <span className='absolute left-[19px] top-9 w-4 text-center rounded-xl font-bold bg-yellow-400'>0</span>
+        <span className='absolute left-[19px] top-9 w-4 text-center rounded-xl font-bold bg-yellow-400'>{state.length}</span>
+        </Link>
 
         {/* {panele user} */}
       <div onMouseEnter={()=>setIsHoveringUser(true)} onMouseLeave={()=>setIsHoveringUser(false)}>

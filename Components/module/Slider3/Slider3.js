@@ -70,7 +70,7 @@ export default function SimpleSlider() {
                 </div>
                 {/* {timer} */}
                 <div className="flex justify-center items-center gap-9 text-sm md:text-[16px] py-4">
-                    <ContDown/>
+                    {/* <ContDown/> */}
                     <div>
                 <button className="bg-blue-800 text-white p-1 rounded-md hover:bg-[#eee] hover:text-black duration-300">بریم برای خرید</button>
                 </div>
